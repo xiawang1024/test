@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>不再提醒</title>
+	<style type="text/css">
+		*{padding: 0;margin: 0;}
+		.m-tips {
+			width: 100%;height: 50px;background-color: #f3f3f3;
+		}
+		.u-tips{
+			width: 1200px;margin:0 auto;height: 50px;line-height: 50px;
+		}
+		.u-help{
+			float: left;
+		}
+		.z-close{
+			height: 12px;padding-left: 15px;line-height: 12px;
+			float: right;background: url(spirit.png) no-repeat -283px -25px;
+			margin-top: 19px;cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="tips" class="m-tips clearfix">
+		<div class="u-tips">
+			<p class="u-help">网易云课堂微专业，帮助你掌握专业技能，令你求职或加薪多一份独特优势！<a href="http://study.163.com/smartSpec/intro.htm#/smartSpecIntro">立即查看&gt;</a></p>
+			<p id="btn" class="z-close">不再提醒</p>
+		</div>
+	</div>
+	<script type="text/javascript">
+	var cookieUtil={
+	get:function(name){
+		var cookieName=encodeURIComponent(name)+'=',
+			cookieStrat=document.cookie.indexOf(cookieName),
+			cookieValue=null;
+
+		if(cookieStrat>-1){
+			var cookieEnd=document.cookie.indexOf(';',cookieStrat);
+			if(cookieEnd==-1){
+				cookieEnd=document.cookie.length;
+			}
+		cookieValue=decodeURIComponent(document.cookie.substring(cookieStrat+cookieName.length,cookieEnd));
+		}
+		return cookieValue;
+	},
+	set:function(name,value,expires,path,domain,secure){
+		var cookieText=encodeURIComponent(name)+'='+encodeURIComponent(value);
+		if(expires instanceof Date){
+			cookieText+="; expires"+'='+expires.toGMTString();
+		}
+		if(path){
+			cookieText+="; path"+'='+path;
+		}
+		if(domain){
+			cookieText+="; domain"+'='+domain;
+		}
+		if(secure){
+			cookieText+='; secure';
+		}
+		document.cookie=cookieText;
+	},
+	unset:function(name,path,domain){
+		this.set(name,"",new Date(0),path,domain,secure);
+	}
+}
+function $(id){
+	return document.getElementById(id);
+}
+
+
+function hide(){
+	
+}
+window.onload=function(){
+	var tipsValue=cookieUtil.get('tips');
+// alert(tipsValue);
+	if (tipsValue==1) {
+		oTips.style.display="none";
+	}
+
+}
+
+
+	
+var oBtn=$('btn'),oTips=$('tips');
+oBtn.onclick=function(){
+	cookieUtil.set('tips',"1",new Date(2017,0,1));
+	oTips.style.display="none";
+
+}
+	</script>
+</body>
+</html>

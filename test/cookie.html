@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	var cookieUtil={
+	get:function(name){
+		var cookieName=encodeURIComponent(name)+'=',
+			cookieStrat=document.cookie.indexOf(cookieName),
+			cookieValue=null;
+
+		if(cookieStrat>-1){
+			var cookieEnd=document.cookie.indexOf(';',cookieStrat);
+			if(cookieEnd==-1){
+				cookieEnd=document.cookie.length;
+			}
+		cookieValue=decodeURIComponent(document.cookie.substring(cookieStrat+cookieName.length,cookieEnd));
+		}
+		return cookieValue;
+	},
+	set:function(name,value,expires,path,domain,secure){
+		var cookieText=encodeURIComponent(name)+'='+encodeURIComponent(value);
+		if(expires instanceof Date){
+			cookieText+="; expires"+'='+expires.toGMTString();
+		}
+		if(path){
+			cookieText+="; path"+'='+path;
+		}
+		if(domain){
+			cookieText+="; domain"+'='+domain;
+		}
+		if(secure){
+			cookieText+='; secure';
+		}
+		document.cookie=cookieText;
+	},
+	unset:function(name,path,domain){
+		this.set(name,"",new Date(0),path,domain,secure);
+	}
+}
+	alert(new Date().getDate())
+	var oDate=new Date();
+	oDate.setDate(oDate.getDate()+1);
+	setCookie('name','wx',oDate);
+	removeCookie('name');
+	cookieUtil.set('name','wangxia');
+
+
+
+	function setCookie (name, value, expires, path, domain, secure) {
+	    var cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value);
+	    if (expires)
+	        cookie += '; expires=' + expires.toGMTString();
+	    if (path)
+	        cookie += '; path=' + path;
+	    if (domain)
+	        cookie += '; domain=' + domain;
+	    if (secure)
+	        cookie += '; secure=' + secure;
+	    document.cookie = cookie;
+	}
+	function getcookie () {
+    var cookie = {};
+    var all = document.cookie;
+    if (all === '')
+        return cookie;
+    var list = all.split('; ');
+    for (var i = 0; i < list.length; i++) {
+        var item = list[i];
+        var p = item.indexOf('=');
+        var name = item.substring(0, p);
+        name = decodeURIComponent(name);
+        var value = item.substring(p + 1);
+        value = decodeURIComponent(value);
+        cookie[name] = value;
+    }
+    return cookie;
+}
+function removeCookie (name, path, domain) {
+    document.cookie = name + '='
+    + '; path=' + path
+    + '; domain=' + domain
+    + '; max-age=0';
+}
+
+	</script>
+</body>
+</html>

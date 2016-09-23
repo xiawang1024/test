@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取列表</title>
+	<style type="text/css">
+	body{
+		background-color: gray;
+	}
+	*{padding: 0;margin:0;}
+		#wrap{padding:0 10px;width: 220px;height: 700px;border: 1px solid ;overflow: hidden;background-color: #fff;position: relative;}
+		#box{position: absolute;}
+		#box div{
+			width: 50px;height: 50px;overflow: hidden;float: left;margin-right: 10px;
+		}
+		#box img{
+			height: 50px;
+		}
+		#box a{
+			text-decoration: none;
+			display: block;
+			width: 200px;height: 50px;
+			padding: 10px;
+		}
+		#box p{
+			font-size: 14px;margin-bottom: 10px;margin-top: 3px;white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		.clearfix::after{
+			content: '.',height:0;display: block;clear: both;overflow: hidden;visibility: hidden;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="box" class="clearfix">
+		<!-- <a href="">
+			<div>
+	             <img src="http://img2.ph.126.net/eVPQpEzCRzokOUQQTkB7VQ==/6630583980584539298.jpg" />
+	         </div>
+	         <p>和秋叶一起学职场技能asdasd</p>
+	         <span>33333</span>
+		</a>
+		<a href="">
+			<div>
+	             <img src="http://img2.ph.126.net/eVPQpEzCRzokOUQQTkB7VQ==/6630583980584539298.jpg" />
+	         </div>
+	         <p>和秋叶一起学职场技能asdasd</p>
+	         <span>33333</span>
+		</a> -->
+	</div>
+	</div>
+	<p><button id="get">获取</button></p>
+	<script type="text/javascript" src="animal.js"></script>
+	<script type="text/javascript">
+		
+			var xhr=new XMLHttpRequest();
+		    xhr.onload=function(){
+			if((xhr.status>=200&&xhr.status<300)||xhr.status==304){
+				var data=JSON.parse(xhr.responseText);
+				var oBox=document.getElementById('box');
+				oBox.innerHTML="";
+				for(var i=0;i<data.length;i++){
+					oBox.innerHTML+='<a><div><img src="'+data[i].smallPhotoUrl+'"/></div><p>'+data[i].name+'</p><span>'+data[i].learnerCount+'</span></a>'
+				}
+				
+			}else{
+				alert('参数错误：'+xhr.status);
+			}
+		};
+		xhr.open("GET","http://study.163.com/webDev/hotcouresByCategory.htm")
+		xhr.send(null);
+
+
+		
+		var json={top:0};
+		var oBox=document.getElementById('box');
+		setInterval(function(){
+				json.top-=70;
+				if(json.top==-700){
+					json.top=0;
+				}
+				startMove(oBox, json);
+		        },5000)
+
+	</script>
+</body>
+</html>

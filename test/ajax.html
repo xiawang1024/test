@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1>员工查询</h1>
+	<label for="keyword">请输入员工编号：</label>
+	<input type="text" name="" id="keyword">
+	<button id="search">查询</button>
+	<p id="searchResult"></p>
+	<hr>
+	<h1>员工新建</h1>
+	<label>请输入员工姓名：</label>
+	<input type="text" name="" id="name"><br>
+	<label>请输入员工编号：</label>
+	<input type="text" name="" id="number"><br>
+	<label>请选择员工性别：</label>
+	<select id="sex">
+		<option>男</option>
+		<option>女</option>
+	</select><br>
+	<label>请输入员工职位：</label>
+	<input type="text" name="" id="job"><br>
+	<button id="save">保存</button>
+	<p id="createResult"></p>
+	<script type="text/javascript">
+		document.getElementById("search").onclick=function(){
+			var xhr=new XMLHttpRequest();
+			xhr.onload=function(){
+				if(xhr.status===200){
+						// document.getElementById('searchResult').innerHTML=xhr.responseText;
+						alert("ok");
+					}else{
+						alert("发生错误"+xhr.status);
+					}
+				};
+			xhr.open("GET","http://localhost:80/ajaxdemo/server.php?number="+document.getElementById("keyword").value,true);
+		
+			xhr.send(null);
+		}
+	</script>
+</body>
+</html>
