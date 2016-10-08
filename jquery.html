@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="jquery-3.1.0.js"></script>
+</head>
+<body>
+	<button>Change colors</button>
+<span>1</span> 
+<div>2</div> 
+<div>3</div>
+
+<div>4</div> 
+<div>5</div>
+<div id="stop">Stop here</div> 
+<div>6</div>
+
+<div>7</div>
+<div>8</div>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('div').each(function(i,item){
+			alert($(this).data("id"));
+		})
+	});
+	</script>
+</body>
+</html>

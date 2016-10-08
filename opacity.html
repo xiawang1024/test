@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>透明度</title>
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+	<input type="text" name="" id="input">
+	<button id="btn">点击</button>
+	<script type="text/javascript">
+		function $(id){
+			return document.getElementById(id);
+		}
+		$('btn').onclick=function(){
+			var value=$('input').value;
+			var cityName=value;
+			if(value.slice(-1,value.length)==="省"||value.slice(-1,value.length)==="市"||value.slice(-1,value.length)==="县"){
+				cityName=value.slice(0,-1);
+			}
+			console.log(cityName);
+		}
+	</script>
+</body>
+</html>

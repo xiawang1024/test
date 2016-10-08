@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取列表</title>
+	<style type="text/css">
+	body{
+		background-color: gray;
+	}
+	*{padding: 0;margin:0;}
+		#wrap{padding:0 10px;width: 220px;height: 350px;border: 1px solid ;overflow: hidden;background-color: #fff;position: relative;}
+		.box{position: relative;}
+		.box1,.box2{position: absolute;}
+		.box2{top: 350px;}
+		.box1  div,.box2 div{
+			width: 50px;height: 50px;overflow: hidden;float: left;margin-right: 10px;
+		}
+		.box1  img,.box2 img{
+			height: 50px;
+		}
+		.box1  a,.box2 a{
+			text-decoration: none;
+			display: block;
+			width: 200px;height: 50px;
+			padding: 10px;
+		}
+		.box1  p,.box2 p{
+			font-size: 14px;margin-bottom: 10px;margin-top: 3px;white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		.clearfix::after{
+			content: '.',height:0;display: block;clear: both;overflow: hidden;visibility: hidden;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="box" class="box" class="clearfix">
+			<div class="box1" id="box1">
+				<a href="">
+				<div>
+		             <img src="http://img2.ph.126.net/eVPQpEzCRzokOUQQTkB7VQ==/6630583980584539298.jpg" />
+		         </div>
+		         <p>和秋叶一起学职场技能asdasd</p>
+		         <span>33333</span>
+			</a>
+			<a href="">
+				<div>
+		             <img src="http://img2.ph.126.net/eVPQpEzCRzokOUQQTkB7VQ==/6630583980584539298.jpg" />
+		         </div>
+		         <p>和秋叶一起学职场技能asdasd</p>
+		         <span>33333</span>
+			</a>
+			<a href="">
+				<div>
+		             <img src="http://img2.ph.126.net/eVPQpEzCRzokOUQQTkB7VQ==/6630583980584539298.jpg" />
+		         </div>
+		         <p>和秋叶一起学职场技能asdasd</p>
+		         <span>33333</span>
+			</a>
+			<a href="">
+				<div>
+		             <img src="http://img2.ph.126.net/eVPQpEzCRzokOUQQTkB7VQ==/6630583980584539298.jpg" />
+		         </div>
+		         <p>和秋叶一起学职场技能asdasd</p>
+		         <span>33333</span>
+			</a>
+			<a href="">
+				<div>
+		             <img src="http://img2.ph.126.net/eVPQpEzCRzokOUQQTkB7VQ==/6630583980584539298.jpg" />
+		         </div>
+		         <p>和秋叶一起学职场技能asdasd</p>
+		         <span>33333</span>
+			</a>
+			</div> 
+			<div class="box2" id="box2">
+				<a href="">
+				<div>
+		             <img src="http://img2.ph.126.net/eVPQpEzCRzokOUQQTkB7VQ==/6630583980584539298.jpg" />
+		         </div>
+		         <p>和秋叶一起学职场技能asdasd</p>
+		         <span>33333</span>
+			</a>
+			<a href="">
+				<div>
+		             <img src="http://img2.ph.126.net/eVPQpEzCRzokOUQQTkB7VQ==/6630583980584539298.jpg" />
+		         </div>
+		         <p>和秋叶一起学职场技能asdasd</p>
+		         <span>33333</span>
+			</a>
+			<a href="">
+				<div>
+		             <img src="http://img2.ph.126.net/eVPQpEzCRzokOUQQTkB7VQ==/6630583980584539298.jpg" />
+		         </div>
+		         <p>和秋叶一起学职场技能asdasd</p>
+		         <span>33333</span>
+			</a>
+			<a href="">
+				<div>
+		             <img src="http://img2.ph.126.net/eVPQpEzCRzokOUQQTkB7VQ==/6630583980584539298.jpg" />
+		         </div>
+		         <p>和秋叶一起学职场技能asdasd</p>
+		         <span>33333</span>
+			</a>
+			<a href="">
+				<div>
+		             <img src="http://img2.ph.126.net/eVPQpEzCRzokOUQQTkB7VQ==/6630583980584539298.jpg" />
+		         </div>
+		         <p>和秋叶一起学职场技能asdasd</p>
+		         <span>33333</span>
+			</a>
+			</div>
+		</div>
+		
+	</div>
+	<p><button id="get">获取</button></p>
+	<script type="text/javascript" src="animal.js"></script>
+	<script type="text/javascript">
+		
+		
+
+
+	// 	var ajax=function(){
+	// 	function ajaxGet(url,callback){
+	// 		var xhr=new XMLHttpRequest();
+	// 		xhr.onload=function(){
+	// 			if((xhr.status>=200&&xhr.status<300)||xhr.status==304){
+	// 				var data=JSON.parse(xhr.responseText);
+	// 				callback(data);
+	// 			}else{
+	// 				alert("Request was unsuccessful:"+xhr.status);
+	// 			}
+	// 		}
+	// 		xhr.open("GET",url);
+	// 		xhr.send(null);
+	// 	}
+	// 	return {
+	// 		get:function(url,callback){
+	// 			return ajaxGet(url,callback);
+	// 		}
+	// 	}
+	// }();
+   // ajax.get("http://study.163.com/webDev/hotcouresByCategory.htm",function(data){
+   // 		var oBox=document.getElementById('box');
+			// 	var html="";
+			// 	for(var i=0;i<data.length;i++){
+			// 		html+='<a><div><img src="'+data[i].smallPhotoUrl+'"/></div><p>'+data[i].name+'</p><span>'+data[i].learnerCount+'</span></a>'
+			// 	}
+			// 	oBox.innerHTML=html+;
+   // });
+		function startMove(obj,iTarget,fn){
+			clearInterval(timer);
+			
+			timer=setInterval(function(){
+				var speed=(iTarget-obj.offsetLeft)/8;
+			speed=speed>0?Math.ceil(speed):Math.floor(speed);
+				if(obj.offsetLeft==iTarget){
+					clearInterval(timer);
+				}else{
+					obj.style.left=obj.offsetLeft+speed+"px";
+				}
+			},16);
+			if(fn){
+				fn();
+			}
+		}
+		var topp=0;
+		var oBox=document.getElementById('box'),
+		oBox1=document.getElementById('box1'),
+		oBox2=document.getElementById('box2');
+		setInterval(function(){
+			topp-=70;
+			oBox.style.top=topp+'px';
+		},2000)
+				
+				
+			
+
+
+
+
+	</script>
+</body>
+</html>

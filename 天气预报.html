@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<h2>天气预报</h2>
+<div id="weather"></div>
+	<script type="text/javascript">
+	function $(id){
+		return document.getElementById(id);
+	}
+		var xhr=new XMLHttpRequest();
+		xhr.onload=function(){
+			if((xhr.status>=200&&xhr.status<300)||xhr.status===304){
+				// var data=JSON.parse(xhr.responseText);
+				// $('weather').innerHTML=data;
+				alert(xhr.responseText);
+			}else{
+				alert('参数错误：'+xhr.status+" "+xhr.statusText);
+			}
+		}
+		xhr.open("GET","http://www.weather.com.cn");
+		xhr.send(null);
+	</script>
+</body>
+</html>
