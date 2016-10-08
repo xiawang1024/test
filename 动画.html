@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>缓冲运动</title>
+	<style type="text/css">
+		*{padding: 0;margin: 0;}
+		div{
+			width: 200px;height: 200px;background-color: red;
+			position:absolute;left: -200px;
+		}
+		span{
+			display: block;width: 30px;height: 45px;
+			background-color: green;text-align: center;
+			position: absolute;right: -30px;top:77.5px;
+		}
+	</style>
+</head>
+<body>
+	<div id="div">
+		<span>分享</span>
+	</div>
+	<script type="text/javascript">
+		var div=document.getElementById('div');
+		div.onmouseover=function(){
+			startMove(this,0);
+		};
+		div.onmouseout=function(){
+			startMove(this,-200);
+		};
+		var timer=null;
+		function startMove(obj,iTarget){
+			clearInterval(timer);
+			
+			timer=setInterval(function(){
+				var speed=(iTarget-obj.offsetLeft)/8;
+			speed=speed>0?Math.ceil(speed):Math.floor(speed);
+				if(obj.offsetLeft==iTarget){
+					clearInterval(timer);
+				}else{
+					obj.style.left=obj.offsetLeft+speed+"px";
+				}
+			},25);
+		}
+	</script>
+</body>
+</html>

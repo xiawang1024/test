@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.slider{
+			width: 500px;height: 300px;
+			overflow: hidden;
+			margin:0 auto;
+			position: relative;
+		}
+		.pic img{
+			width: 500px;height: auto;display: block;
+			float: left;
+		}
+		.pic{
+			width: 2500px;height:375px;
+			position: absolute;
+			/*left: -500px;*/
+		}
+		.control span{
+			display: block;
+			width: 50px;height: 50px;border-radius: 50%;
+			background: #ece6e6;
+			position: absolute;z-index: 3;
+			text-align: center;
+			line-height: 50px;
+			font-size: 30px;
+			font-weight: 600;
+			color: #f00;
+			opacity: 0;
+			transition: opacity 0.8s ease-in-out;
+		}
+		.slider:hover .control span{
+			opacity: 0.9;
+			cursor: pointer;
+		}
+		.slider:hover{
+			cursor: pointer;
+		}
+		.pre{
+			left: 0;top:125px;
+		}
+		.next{
+			right: 0;top:125px;
+		}
+		.con-cur{
+			position: absolute;z-index: 3;
+			bottom: 10px;right: 10px;
+
+		}
+		.con-cur span{
+			width: 10px;height: 10px;display: block;
+			float: left;background-color: #b1a9a9;
+			margin-right: 5px;
+			border-radius: 50%;
+			
+		}
+		/*.con-cur span:hover{
+			background: #3744bf;
+
+		}*/
+		.con-cur .on{
+			background: #3744bf;
+			
+		}
+	</style>
+	<script type="text/javascript" src="animal.js"></script>
+</head>
+<body>
+	<div class="slider">
+		<div class="pic">
+			<!-- <img src="images/00/0.jpg"> -->
+			<img src="images/00/19.jpg">
+			<img src="images/00/13.jpg">
+			<img src="images/00/10.jpg">
+			<img src="images/00/20.jpg">
+			<img src="images/00/0.jpg">
+			<!-- <img src="images/00/19.jpg"> -->
+		</div>
+		<div class="control">
+			<span class="pre"><</span>
+			<span class="next">></span>
+	    </div>
+	    <div class="con-cur">
+	    	<span></span>
+	    	<span></span>
+	    	<span></span>
+	    	<span></span>
+	    	<span></span>
+	    </div>
+	</div>
+<script type="text/javascript">
+	var $=function(className){
+		return document.getElementsByClassName(className)[0];
+	}
+
+	var oPic=$("pic"),
+		oPre=$("pre"),
+		oNext=$("next"),
+		oSlider=$("slider"),
+		oImgs=oPic.getElementsByTagName('img'),
+		oConCur=$("con-cur"),
+		oCurs=oConCur.getElementsByTagName('span'),
+		json={};
+
+	json.left=oPic.offsetLeft;
+	
+	// oNext.onclick=nextOne;
+	oNext.addEventListener("click",nextOne);
+
+	oPre.addEventListener("click",preOne);
+
+	var timer=setInterval(nextOne,3000);
+	//鼠标移入，自动播放停止，选用mouseenter
+	oSlider.onmouseenter=function(){
+		clearInterval(timer);
+	}
+	//鼠标移出，自动播放开始
+	oSlider.onmouseleave=function(){
+		clearInterval(timer);  //开启定时之前先清除定时，以免定时重叠
+		timer=setInterval(nextOne,3000);
+	}
+
+	for(var i=0;i<oCurs.length;i++){
+		// alert(oCurs.length);
+		oCurs[i].index=i;  
+		oCurs[i].onmouseenter=function(){
+			// alert(this.index);
+			clearShowCur();
+			json.left=-this.index*500;
+			showCur(json.left);
+			startMove(oPic,json);
+		}
+	}
+	//第一张焦点高亮
+	showCur(json.left);
+	//前一张
+	function preOne(){
+		if(json.left>=0){
+			json.left=-2000;
+		}else{
+			json.left+=500;
+		}
+		showCur(json.left);
+		startMove(oPic,json);
+	}
+	//下一张
+	function nextOne(){
+		// alert(1);
+		if(json.left<=-2000){
+			json.left=0;
+		}else{
+			json.left-=500;
+		}
+		showCur(json.left);
+		startMove(oPic,json);
+	}
+	//下面按钮高亮
+	function showCur(dis){
+		var index=-dis/500;
+		clearShowCur();
+		oCurs[index].className="on";
+	}
+	//清楚按钮高亮
+	function clearShowCur(){
+		for(var i=0;i<oCurs.length;i++){
+			oCurs[i].className='';
+		}
+	}
+</script>
+</body>
+</html>

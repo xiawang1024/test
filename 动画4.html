@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取样式</title>
+	<style type="text/css">
+		div{
+			width: 200px;height: 200px;
+			background-color: orange;
+			margin-bottom: 6px;
+			border: 5px solid #000;
+			padding: 2px;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<script type="text/javascript">
+		var oDivs=document.getElementsByTagName('div');
+		for(var i=0;i<oDivs.length;i++){
+			oDivs[i].timer=null;
+			oDivs[i].onmouseover=function(){
+				startMove(this,450);
+			};
+			oDivs[i].onmouseout=function(){
+				startMove(this,200);
+			};
+		}
+		function startMove(obj, iTarget){
+			clearInterval(obj.timer);
+			obj.timer=setInterval(function(){
+				var wid=parseInt(getStyle(obj,"width"));
+				var speed=(iTarget-wid)/8;
+				speed=speed>0?Math.ceil(speed):Math.floor(speed);
+				if(wid===iTarget){
+					clearInterval(obj.timer);
+				}else{
+					obj.style.width=wid+speed+'px';
+				}
+			},25);
+		}
+
+		//注意：getStyle返回的是string,需要用parseInt()转化为数值
+		//getStyle得到的是元素的实际样式，不包括padding和border
+		function getStyle(obj,attr){
+			if(obj.currentStyle){
+				return obj.currentStyle[attr];
+			}else{
+				return window.getComputedStyle(obj,null)[attr];
+			}
+		}
+		// var wid=getStyle(oDivs[0],"width");
+		// alert(typeof wid);
+	</script>
+</body>
+</html>

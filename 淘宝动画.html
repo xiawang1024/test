@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	/**{padding: 0;margin: 0;}*/
+		div{
+			width: 290px;
+			height: 210px;
+			font: 12px Arial Serif;
+		}
+		ul,li{
+			list-style: none;padding: 0;margin: 0;
+		}
+		li{
+			float: left;
+			width: 70px;
+			height: 70px;
+			border: 1px solid rgba(234,234,234,0.6);
+			overflow: hidden;
+
+		}
+		li a{
+			display: block;
+			text-align: center;
+			text-decoration: none;
+			color: gray;
+		}
+		a:hover{
+			color: red;
+		}
+		a p{
+			margin-top: 5px;
+		}
+		.btn{
+			display: inline-block;
+			width: 24px;height: 24px;
+			background: url(TB10gHmKpXXXXbtXXXXXXXXXXXX-220-898.png) 0 0 no-repeat;
+			/*background: orange;*/
+			margin-top: 15px;
+			text-align: center;
+			/*position: absolute;*/
+			position: relative;
+		}
+		.item2 .btn{
+			background-position: 0 -44px;
+		}
+		.item3 .btn{
+			background-position: 0 -88px;
+		}
+		.item4 .btn{
+			background-position: 0 -132px;
+		}
+		.item5 .btn{
+			background-position: 0 -176px;
+		}
+		.item6 .btn{
+			background-position: 0 -220px;
+		}
+		.item7 .btn{
+			background-position: 0 -264px;
+		}
+		.item8 .btn{
+			background-position: 0 -308px;
+		}
+		.item9 .btn{
+			background-position: 0 -352px;
+		}
+		.item10 .btn{
+			background-position: 0 -396px;
+		}
+		.item11 .btn{
+			background-position: 0 -440px;
+		}
+
+		.item12 .btn{
+			background-position: 0 -484px;
+		}
+	</style>
+	<script type="text/javascript" src="animal.js"></script>
+</head>
+<body>
+	<div>
+		<ul>
+			<li class="item1"><a href="">
+				<span class="btn"></span>
+				<p>充话费</p>
+			</a></li>
+			<li class="item2"><a href=""><span class="btn">
+						
+					</span><p>游戏</p></a></li>
+			<li class="item3"><a href=""><span class="btn">
+						
+					</span><p>旅行</p></a></li>
+			<li class="item4"><a href=""><span class="btn">
+						
+					</span><p>保险</p></a></li>
+			<li class="item5"><a href=""><span class="btn">
+						
+					</span><p>彩票</p></a></li>
+			<li class="item6"><a href=""><span class="btn">
+						
+					</span><p>电影</p></a></li>
+			<li class="item7"><a href=""><span class="btn">
+						
+					</span><p>点外卖</p></a></li>
+			<li class="item8"><a href=""><span class="btn">
+						
+					</span><p>理财</p></a></li>
+			<li class="item9"><a href=""><span class="btn">
+						
+					</span><p>找服务</p></a></li>
+			<li class="item10"><a href=""><span class="btn">
+						
+					</span><p>音乐</p></a></li>
+			<li class="item11"><a href=""><span class="btn">
+						
+					</span><p>水电煤</p></a></li>
+			<li class="item12"><a href=""><span class="btn">
+						
+					</span><p>火车票</p></a></li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var oLis=document.getElementsByTagName('li');
+
+		for(var i=0;i<oLis.length;i++){
+			oLis[i].timer=null;
+			oLis[i].onmouseenter=function(){
+				var oSpan=this.getElementsByTagName('span')[0];
+				oSpan.style.top=0;
+				startMove(oSpan, {top:-50},function(){
+					oSpan.style.top=50+"px";
+					startMove(oSpan,{top:0})
+				});
+			};
+		}
+	</script>
+</body>
+</html>

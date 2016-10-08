@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<style>
+		body, button, input, legend{margin: 0;padding: 0;font: 16px "微软雅黑";}
+		.m-form{margin: 150px auto;width: 325px;border: 1px solid #ddd;}
+		.m-form legend{width: 100%;line-height: 30px;text-indent: 1em;color: #fff;background-color: #2d2d2d;}
+		.m-form fieldset{border: none;padding: 20px;}
+		.m-form div{margin: 20px;}
+		.m-form button{width: 100%;height: 30px;color: #fff;border: 1px solid #ddd;cursor: pointer;background-color: #2d7dca;}
+		.m-form .msg{margin:5px;text-align:center;
+            /*display:none;*/
+        }
+		.m-form .tip{padding-left:6em;font-size:12px;color:#C0C0C0;}
+		.m-form .j-err{display:block;color:#FF0000;}
+		.m-form .j-suc{display:block;color:#158226;}
+		.m-form .u-txt{width: 160px;padding: 3px;border:1px solid #aaa;}
+		.m-form .j-error{border-color: #f00;background-color: #FFE7E7;}
+		.m-form .j-disabled{cursor: default;background-color: #ddd;}
+	</style>
+</head>
+<body>
+	<form action="./login" class="m-form" name="loginForm" target="result" autocomplete="off">
+	  <legend>手机号码登录</legend>
+	  <fieldset>
+	    <div class="msg" id="message"></div>  <!--提示信息 -->
+		<div>
+		  <label for="telephone">手机号：</label>
+		  <input id="telephone" name="telephone" type="tel" class="u-txt" maxlength="11" 
+		         required pattern="^0?(13[0-9]|15[012356789]|18[0236789]|14[57])[0-9]{8}$"><br/>
+		  <span class="tip">11位数字手机号码</span>
+		</div>
+		<div>
+		  <label for="password">密　码：</label>
+		  <input id="password" name="password" type="password" class="u-txt"><br/>
+		  <span class="tip">至少6位，同时包含数字和字母</span>
+		</div>
+		<div><button name="loginBtn">登　录</button></div>
+	  </fieldset>
+	</form>
+	<iframe name="result" id="result" style="display:none;"></iframe>
+</body>
+</html>
+<script type="text/javascript">
+	var form=document.forms.loginForm;
+	var tip=document.getElementById('message');
+	var tel=form.telephone;
+	var psd=form.password;
+
+	function showMessage(msg){
+		tip.innerHTML=msg;
+		tip.classList.add("j-err");
+	}
+
+	function clearInvalid(node){
+		tip.innerHTML="";
+		tip.classList.remove("j-err");
+		tip.classList.remove('j-suc');
+		node.classList.remove('j-error');
+	}
+
+	function invalidInput(node,msg){
+		node.classList.add("j-error");
+		showMessage(msg);
+	}
+
+	tel.addEventListener("invalid",function(event){
+		var target=event.target;
+		event.preventDefault();
+		invalidInput(target,"输入正确的手机号！");
+	});
+
+	form.addEventListener("input",function(event){
+		var target=event.target;
+		clearInvalid(target);
+		
+	});
+
+	form.addEventListener("submit",function(event){
+		var value=psd.value;
+		var msg='';
+		if(value.length<6){
+			msg="密码长度必须大于6位";
+		}else if(!/\d/.test(value)||!/[a-z]/i.test(value)){
+			msg="密码必须包含数字和字母";
+		}
+		if(!!msg){
+			event.preventDefault();
+			invalidInput(psd,msg);
+			return;
+		}
+	});
+</script>

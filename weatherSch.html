@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+	<title>天气查询</title>
+	<style type="text/css">
+*{padding:0;margin:0;}
+h2{margin:10px 0 0 30px;}
+#box{width:250px;padding-top:10px;border:1px solid;font-family:Helvetica,"Microsoft Yahei",Arial,sans-serif;color:#fff;font-size:12px;margin:0 auto;}
+#citySch{border:0;height:20px;width:90px;border-radius:5px;font-size:12px;font-weight:bold;line-height:20px;color:#fff;background-color:#5a5c5d;margin:0 8px 0 0px;padding:3px 10px;}
+input::-webkit-input-placeholder{color: #fff;opacity: 0.6;}
+input:-moz-placeholder{color: #fff;opacity: 0.6;}
+input:-ms-input-placeholder{color: #fff;opacity: 0.6;}
+#sch{border-radius:3px;height:20px;border:0;color:#fff;background-color:#03a9f4;padding:0 3px;}
+#weather-wrap{width:250px;border:1px solid;padding:10px 0;background-color:#72a6c7;border-radius:10px;margin-top:8px;}
+#weather-wrap p{text-align:center;padding-top:8px;}
+#city{font-size:30px;}
+#weather{font-size:14px;}
+#temp{font-size:50px;}
+#temp sup{display:inline-block;width:3px;height:3px;border:2px solid;border-radius:50%;vertical-align:28px;margin-left:3px;}
+#des sup{display:inline-block;width:2px;height:2px;border:1px solid #fff;border-radius:50%;margin-left:3px;}
+</style>
+</head>
+<body>
+	 <h2>国内天气查询</h2>
+	 <div id="box">
+		<input id="citySch" type="text" placeholder="输入城市名">
+		<button id="sch">查询</button>
+		<div id="weather-wrap" style="display:none">
+			<p id="city">郑州</p>
+			<p id="weather">小雨</p>
+			<p id="temp">23<sup></sup></p>
+			<p id="des">今天：星期1，阵雨。<br>最高气温23<sup></sup>，最低气温18<sup></sup></p>
+			<p id="wd">风向：无持续风向</p>
+			<p id="ws">风力：微风</p>
+			<p id="sunrise">日出：</p>
+			<p id="sunset">日落：</p>
+			<p id="time">发布时间：</p>
+		</div>
+		</div>
+	<script type="text/javascript">
+		function $(id){
+			return document.getElementById(id);
+		}
+		function ajaxGet(citySch,callback){
+			var xhr=new XMLHttpRequest();
+			xhr.onload=function() {
+				if((xhr.status>=200&&xhr.status<300)||xhr.status==304) {
+					var data=JSON.parse(xhr.responseText);
+					callback(data);
+				}
+			}
+			xhr.open("GET", "http://apis.baidu.com/apistore/weatherservice/cityname?cityname="+encodeURIComponent(citySch));
+			xhr.setRequestHeader("apikey", "90807bdfb4e0f955fa8932dfe605350a");
+			xhr.send(null);
+		}
+		$('sch').onclick=function(){
+			var value=$('citySch').value,
+			    cityName=value;
+			if(value.slice(-1,value.length)==="省"||value.slice(-1,value.length)==="市"||value.slice(-1,value.length)==="县"){
+				cityName=value.slice(0,-1);
+			}
+			ajaxGet(cityName,function(data){
+			var result=data.retData;
+			$('city').innerHTML=result.city;
+			$('weather').innerHTML=result.weather;
+			$('temp').innerHTML=result.temp+"<sup></sup>";
+			$('des').innerHTML="今天："+weekday[d.getDay()]+"，"+result.weather+"。<br>最高气温"+result.h_tmp+"<sup></sup>，最低气温"+result.l_tmp+"<sup></sup>。";
+			$('sunrise').innerHTML="日出："+result.sunrise;
+			$('sunset').innerHTML="日落："+result.sunset;
+			$('wd').innerHTML="风向："+result.WD;
+			$('ws').innerHTML="风力："+result.WS;
+			$('time').innerHTML="发布时间："+result.time;
+			$('weather-wrap').style.display="";
+		});
+		}
+		var d=new Date();
+		var weekday=new Array(7);
+		weekday[0]="星期日";
+		weekday[1]="星期一";
+		weekday[2]="星期二";
+		weekday[3]="星期三";
+		weekday[4]="星期四";
+		weekday[5]="星期五";
+		weekday[6]="星期六";
+	</script>
+</body>
+</html>
+
+
+
+
+<!-- {"access_token":"oLAXNVV7e_E5o849ciptmgt1GCeTz_lX_VZu_QD79_k1HqZxdcFpSUeJU2ZCiuGfMIfXKUi3fH_w2FXOQHcCiyIpdcsjpdi1a7FgDdVNiDBeFMn2Oydpc3JpzOVkO8poGTEiAAABOZ","expires_in":7200} -->

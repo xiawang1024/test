@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		ul{
+			width: 60px;border: 1px solid gray;padding: 0;
+		}
+		li{
+			background-color: gray;
+			list-style: none;cursor: pointer;
+		}
+		li+li{
+			margin-top: 5px;
+		}
+		.red{
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<ul id="ul">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+	</ul>
+</body>
+</html>
+<script type="text/javascript">
+	var ullist=document.getElementById("ul");
+	ullist.onclick=function(event){
+		var target=event.target;
+		if(!target.classList.contains("red")){
+			target.classList.add("red");
+		}
+		else{
+			target.classList.remove("red");
+		}
+		
+	}
+</script>

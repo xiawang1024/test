@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{padding: 0;margin:0;}
+	</style>
+</head>
+<body>
+	<div id="demo" style="height:72px;width:180px;overflow:hidden">
+		<div id="demo1">
+			<ul>
+				<li>1111111111111</li>
+				<li>2222222222222</li>
+				<li>3333333333333</li>
+				<li>4444444444444</li>
+				<li>5555555555555</li>
+			</ul>
+		</div>
+		<div id="demo2">	
+		</div>	
+
+	</div>
+</body>
+</html>
+<script>
+var demo=document.getElementById('demo');
+var demo1=document.getElementById('demo1');
+var demo2=document.getElementById('demo2');
+demo2.innerHTML=demo1.innerHTML;
+demo.scrollTop=0;
+setInterval(function(){
+	if(demo.scrollTop===demo1.offsetHeight){
+		demo.scrollTop=0;
+	}else{
+		demo.scrollTop++;
+	}
+	
+},20)
+</script>
+
+

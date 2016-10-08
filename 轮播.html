@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>轮播</title>
+	<style type="text/css">
+		#div{
+			width: 640px;
+			margin: 0 auto;
+			box-sizing: border-box;
+		}
+		.list{
+			width: 640px;height: 275px;
+			
+			/*border: 2px solid red;*/
+			position: relative;
+			overflow: hidden;
+			opacity: 1;
+			box-sizing: border-box;
+		}
+		.list li{
+			list-style: none;position: absolute;
+		}
+		ul{
+			padding: 0;margin: 0;
+		}
+		span{
+			display: inline-block;text-align: center;
+			width: 30px;height: 45px;background-color: gray;
+			line-height: 45px;opacity: 0.6;cursor: pointer;
+			font-size: 30px;
+		}
+		span:hover{
+			opacity: 1.0;
+		}
+		.pre{
+			position: absolute;left: 0;top: 115px;
+		}
+		.next{
+			position: absolute;right: 0;top: 115px;
+		}
+		.list li+li{
+			display: none;
+		}
+		.tab{
+			width: 640px;height: 75px;
+			margin-top: 3px;box-sizing: border-box;
+			display: flex;overflow: hidden;
+		}
+		.tab ul{
+			text-align: center;display: flex;
+		}
+		.tab li{
+			list-style: none;display: inline-block;
+		}
+		.tab li+li{
+			margin-left: 4px;
+		}
+		.tab img{
+			flex: 1;width: 157px;height: 78px;
+			box-sizing: border-box;
+		}
+	</style>
+</head>
+<body>
+	<div id="div">
+		<div  class="list">
+			<ul>
+				<li><a href=""><img src="http://p1.qhimg.com/dmfd/640_275_/t01b05ad35aa7cc1890.png?size=660x283" alt=""></a></li>
+				<li><a href=""><img src="http://p3.qhimg.com/dmfd/640_275_/t013139fb0839cf81ee.png?size=718x308" alt=""></a></li>
+				<li><a href=""><img src="http://p7.qhimg.com/dmfd/640_275_/t01c85091af2a3da2fd.png?size=801x343" alt=""></a></li>
+				<li><a href=""><img src="http://p9.qhimg.com/dmfd/640_275_/t014ee92fb2fc90d4ed.jpg?size=640x275" alt=""></a></li>
+				<li><a href=""><img src="http://p9.qhimg.com/dmfd/640_275_/t019a4d423b68a16a06.png?size=1021x438" alt=""></a></li>
+				<li><a href=""><img src="http://p3.qhimg.com/dmfd/640_275_/t013139fb0839cf81ee.png?size=718x308" alt=""></a></li>
+			</ul>
+			<span class="pre"><</span>
+			<span class="next">></span>
+		</div>
+		<div class="tab">
+			<ul>
+				<li><a href=""><img src="http://p1.qhimg.com/dmfd/640_275_/t01b05ad35aa7cc1890.png?size=660x283" alt=""></a></li>
+				<li><a href=""><img src="http://p3.qhimg.com/dmfd/640_275_/t013139fb0839cf81ee.png?size=718x308" alt=""></a></li>
+				<li><a href=""><img src="http://p7.qhimg.com/dmfd/640_275_/t01c85091af2a3da2fd.png?size=801x343" alt=""></a></li>
+				<li><a href=""><img src="http://p9.qhimg.com/dmfd/640_275_/t014ee92fb2fc90d4ed.jpg?size=640x275" alt=""></a></li>
+				<li><a href=""><img src="http://p9.qhimg.com/dmfd/640_275_/t019a4d423b68a16a06.png?size=1021x438" alt=""></a></li>
+				<li><a href=""><img src="http://p3.qhimg.com/dmfd/640_275_/t013139fb0839cf81ee.png?size=718x308" alt=""></a></li>
+			</ul>
+		</div>
+		<div class="tab-num"></div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	window.onload=function(){
+		var ouL=document.getElementsByName("ul")[0],
+		lis=document.getElementsByTagName('li');
+	var count=0;
+	var div=document.getElementById('div');
+	
+    // setInterval(fadeout(document.getElementById('div')),3000);
+	setTimeout(function(){
+		
+		for(var i=0;i<lis.length;i++){
+			lis[i].style.display="none";
+		}
+		count++;
+		if(count==lis.length-1){
+			count=0;
+		}
+		lis[count].style.display='block';
+		// setTimeout(fadeout(lis[count]),1000);
+		setTimeout(arguments.callee,3000);
+	},3000);
+
+	
+};	
+	
+</script>

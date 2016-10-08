@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>年月ri</title>
+	
+</head>
+<body>
+	<form name="myForm">
+		<select name="year">
+			<option value="0">--</option>
+			<option value="1999">1999</option>
+			<option value="2000">2000</option>
+			<option value="2001">2001</option>
+
+		</select>年
+		<select name="month">
+			<option value="0">--</option>
+		</select>月
+		<select name="day">
+			<option value="0">--</option>
+		</select>日
+	</form>
+</body>
+</html>
+<script type="text/javascript">
+	var form=document.forms.myForm;
+	var yearSection=form.year;
+	var monthSection=form.month;
+	var daySection=form.day;
+	function createOptions(select,nums){
+		clearOptions(select);
+		for(var i=1;i<=nums;i++){
+			var opt=new Option(i,i);
+			select.add(opt);
+		}
+	}
+	function Days(month,year){
+		var days=null;
+
+		switch(month){
+			case "1":
+			case "3":
+			case "5":
+			case "7":
+			case "8":
+			case "10":
+			case "12":
+				days=31;break;
+			case "2":
+				if(year%4===0&&year%100!==0||year%400===0){
+					days=29;
+				}else{
+					days=28;
+				}
+				break;
+			default:
+				days=30;break;
+		}
+		return days;
+	}
+	function clearOptions(select){
+		for(var i=select.length;i>0;i--){
+			select.remove(i);
+		}
+	}
+	yearSection.addEventListener("change",function(event){
+		var target=event.target;
+		// alert(target.value);
+		if(target.value==0){
+			clearOptions(monthSection);
+			clearOptions(daySection);
+		}else if(target.value){
+			createOptions(monthSection,12);
+		}
+	});
+	monthSection.addEventListener("change",function(event){
+		var target=event.target;
+		var year=yearSection.value;
+		alert(typeof target.value);
+		var day=Days(target.value,year);
+		if(target.value==0){
+			clearOptions(daySection);
+		}else{
+			createOptions(daySection,day);
+		}
+	});
+	
+</script>

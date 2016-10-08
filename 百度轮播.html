@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script type="text/javascript">
+	
+					(function(){
+						
+						var random = function(t){ return Math.round(Math.random()*t) };
+						var root = document.getElementById("js-random-focus");
+						var randomOrder = function(root){
+							var	elems = root.children,
+								sectionOne = [], sectionTwo = [];
+							for (var i = 0, l = elems.length; i < l; i++) {
+								var cls = elems[i].className;
+								if (cls == "js-random-first") {
+									sectionOne.push(elems[i]);
+								} else if (cls == "js-random-second") {
+									sectionTwo.push(elems[i]);
+								}
+							}
+
+							sectionTwo.length &&
+							root.insertBefore(sectionTwo[random(sectionTwo.length - 1)], root.firstChild);
+							sectionOne.length &&
+							root.insertBefore(sectionOne[random(sectionOne.length - 1)], root.firstChild);
+
+						};
+						randomOrder(root);
+						// 设置第一张图片的地址
+						var firstFocus = root.getElementsByTagName("img")[0];
+						if(window.narrowScreen){
+							firstFocus.src = firstFocus.getAttribute("data-narrow");
+						}else{
+							firstFocus.src = firstFocus.getAttribute("data-wide");
+						}
+
+					})();
+
+				
+</script>

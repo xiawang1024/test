@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		<input id="file_input" type="file" name="file" multiple>
+	</div>
+	<div id="result"></div>
+</body>
+</html>
+<script type="text/javascript">
+	
+var result = document.getElementById("result");
+var input = document.getElementById("file_input");
+function aaImage(file){
+	var fr=new FileReader();
+    	fr.readAsDataURL(file);
+    	fr.onload=function(event){
+    		var url=this.result;
+    		appendimage(url);
+    	}
+}
+input.onchange=function(event){
+	var target=event.target;
+
+	// alert(target.files.length)
+	if(window.FileReader){
+		for(var i=0;i<target.files.length;i++){
+			var file=target.files[i];
+			aaImage(file);
+		}
+
+	}else{
+		result.innerHTML='Not supported by your browser!'
+	}
+}
+
+function appendimage(url){
+	var image=new Image();
+	result.appendChild(image);
+	image.src=url;
+}
+</script>
